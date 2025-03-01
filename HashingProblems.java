@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** BRIANNA FARINANGO / 002 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -32,17 +32,24 @@ class HashingProblems {
      */
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
-
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
-
-         return 0.0 / 0.0;
-  }
+        double sum = 0.0;
+        int count = 0;
+        
+        // iterate through array to find keys that are also in HashMap
+        for (int key : array) {
+            // check if key from array exists in HashMap
+            if (map.containsKey(key)) {
+                // add its value to sum
+                sum += map.get(key);
+                // increment count of common keys found
+                count++;
+            }
+        }
+        
+        // calculate and return average
+        // if count is 0 (no common keys), return non-number
+        return sum / count;
+    }
 
 
     /*
@@ -52,19 +59,20 @@ class HashingProblems {
      * values of the corresponding keys that are odd.
      */
 
-  public ArrayList<String> odd(HashMap<Integer, String> map) {
-    
-      ArrayList<String> result = new ArrayList<>();
-
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
-
-
-      return result;
-  }
+    public ArrayList<String> odd(HashMap<Integer, String> map) {
+        ArrayList<String> result = new ArrayList<>();
+        
+        // Iterate through all keys in the HashMap
+        for (Integer key : map.keySet()) {
+            // Check if the key is odd
+            if (key % 2 != 0) {
+                // If odd, add the corresponding value to our result list
+                result.add(map.get(key));
+            }
+        }
+        
+        return result;
+    }
 
 
   /*
@@ -105,12 +113,23 @@ class HashingProblems {
    */
 
   public int twoSums(int[] numbers, int k) {
-
-      /*
-       * ADD YOUR CODE HERE
-       */
-
-      return -1;
+    // use a HashSet to store all numbers
+    HashSet<Integer> numSet = new HashSet<>();
+    int count = 0;
+    
+    // add all numbers to the HashSet
+    for (int num : numbers) {
+        numSet.add(num);
+    }
+    
+    // for each number in array, check if (number + k) exists in the set
+    for (int num : numbers) {
+        if (numSet.contains(num + k)) {
+            count++;
+        }
+    }
+    
+    return count;
   }
 
 } /* end class HashingProblems */
